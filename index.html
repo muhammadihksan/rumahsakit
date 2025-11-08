@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIM Puskesmas 24 Jam</title>
+  <link rel="stylesheet" href="styl.css" />
+</head>
+<body>
+      <!-- // HALAMAN LOGIN & AUTH// -->
+     
+  <div id="loginPage" class="page active">
+    <div class="container">
+      <div class="login-box">
+        <div class="logo">
+          <h1>🏥 Puskesmas Al Ihksan</h1>
+          <p>Sistem Informasi Manajemen puskesmas al ihskan</p>
+        </div>
+
+        <!-- Form Login -->
+        <form id="loginForm" class="form-container active">
+          <h2>Login</h2>
+
+          <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" placeholder="Masukkan username" required />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Masukkan password" required />
+          </div>
+
+          <div class="form-group">
+            <label for="loginRole">Role</label>
+            <select id="loginRole" required>
+              <option value="">Pilih Role</option>
+              <option value="admin">Admin</option>
+              <option value="perawat">Perawat</option>
+              <option value="dokter">Dokter</option>
+              <option value="simpus">Tim SIMPUS</option>
+              <option value="apoteker">Apoteker</option>
+            </select>
+          </div>
+
+          <div class="remember-forgot">
+            <label><input type="checkbox" id="rememberMe" /> Ingat Saya</label>
+            <a href="#" id="forgotPasswordLink">Lupa Password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary">Login</button>
+          <p class="switch-form">
+            Belum punya akun? <a href="#" id="showRegister">Daftar di sini</a>
+          </p>
+        </form>
+
+        <!-- Form Register -->
+        <form id="registerForm" class="form-container">
+          <h2>Daftar Akun Baru</h2>
+
+          <div class="form-group">
+            <label for="regFullname">Nama Lengkap</label>
+            <input type="text" id="regFullname" placeholder="Masukkan nama lengkap" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regUsername">Username</label>
+            <input type="text" id="regUsername" placeholder="Buat username" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" placeholder="email@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="Buat password" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regConfirmPassword">Konfirmasi Password</label>
+            <input type="password" id="regConfirmPassword" placeholder="Ulangi password" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regRole">Role</label>
+            <select id="regRole" required>
+              <option value="">Pilih Role</option>
+              <option value="perawat">Perawat</option>
+              <option value="dokter">Dokter</option>
+              <option value="apoteker">Apoteker</option>
+              <option value="simpus">Tim SIMPUS</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">Daftar</button>
+          <p class="switch-form">
+            Sudah punya akun? <a href="#" id="showLogin">Login di sini</a>
+          </p>
+        </form>
+
+        <!-- Form Lupa Password -->
+        <form id="forgotPasswordForm" class="form-container">
+          <h2>Lupa Password</h2>
+          <p class="info-text">Masukkan email Anda untuk reset password</p>
+
+          <div class="form-group">
+            <label for="forgotEmail">Email</label>
+            <input type="email" id="forgotEmail" placeholder="email@example.com" required />
+          </div>
+
+          <button type="submit" class="btn-primary">Kirim Link Reset</button>
+          <p class="switch-form"><a href="#" id="backToLogin">Kembali ke Login</a></p>
+        </form>
+
+        <!-- Pesan Berhasil -->
+        <div id="successMessage" class="message-container">
+          <div class="success-icon">✓</div>
+          <h2>Berhasil!</h2>
+          <p id="successText"></p>
+          <button class="btn-primary" id="continueBtn">Lanjutkan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+       <!-- DASHBOARD ADMIN -->
+      
+  <div id="dashboardAdmin" class="page dashboard">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <h2>🏥 Admin Panel</h2>
+        <p id="adminName"></p>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="menu-link active" data-page="admin-overview">📊 Dashboard</a></li>
+        <li><a href="#" class="menu-link" data-page="admin-users">👥 Data Pengguna</a></li>
+        <li><a href="#" class="menu-link" data-page="admin-activity">📝 Aktivitas Login</a></li>
+        <li><a href="#" class="menu-link" data-page="admin-stats">📈 Statistik</a></li>
+        <li><a href="#" class="menu-link" data-page="admin-settings">⚙️ Pengaturan</a></li>
+        <li><a href="#" id="logoutAdmin" class="logout-link">🚪 Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-header">
+        <h1>Dashboard Administrator</h1>
+        <div class="header-info"><span id="currentDate"></span></div>
+      </div>
+      <div id="adminContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       DASHBOARD PERAWAT
+       =============================== -->
+  <div id="dashboardPerawat" class="page dashboard">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <h2>🏥 Perawat Panel</h2>
+        <p id="perawatName"></p>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="menu-link active" data-page="perawat-overview">📊 Dashboard</a></li>
+        <li><a href="#" class="menu-link" data-page="perawat-patients">🤒 Data Pasien</a></li>
+        <li><a href="#" class="menu-link" data-page="perawat-schedule">📅 Jadwal Jaga</a></li>
+        <li><a href="#" class="menu-link" data-page="perawat-medical">💊 Catatan Medis</a></li>
+        <li><a href="#" id="logoutPerawat" class="logout-link">🚪 Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-header">
+        <h1>Dashboard Perawat</h1>
+        <div class="header-info"><span id="currentDatePerawat"></span></div>
+      </div>
+      <div id="perawatContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       DASHBOARD DOKTER
+       =============================== -->
+  <div id="dashboardDokter" class="page dashboard">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <h2>🏥 Dokter Panel</h2>
+        <p id="dokterName"></p>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="menu-link active" data-page="dokter-overview">📊 Dashboard</a></li>
+        <li><a href="#" class="menu-link" data-page="dokter-patients">🤒 Pasien Hari Ini</a></li>
+        <li><a href="#" class="menu-link" data-page="dokter-diagnosis">🔬 Diagnosis</a></li>
+        <li><a href="#" class="menu-link" data-page="dokter-prescription">💊 Resep</a></li>
+        <li><a href="#" id="logoutDokter" class="logout-link">🚪 Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-header">
+        <h1>Dashboard Dokter</h1>
+        <div class="header-info"><span id="currentDateDokter"></span></div>
+      </div>
+      <div id="dokterContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       DASHBOARD TIM SIMPUS
+       =============================== -->
+  <div id="dashboardSimpus" class="page dashboard">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <h2>🏥 SIMPUS Panel</h2>
+        <p id="simpusName"></p>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="menu-link active" data-page="simpus-overview">📊 Dashboard</a></li>
+        <li><a href="#" class="menu-link" data-page="simpus-data">📁 Data Management</a></li>
+        <li><a href="#" class="menu-link" data-page="simpus-reports">📋 Laporan</a></li>
+        <li><a href="#" class="menu-link" data-page="simpus-backup">💾 Backup Data</a></li>
+        <li><a href="#" id="logoutSimpus" class="logout-link">🚪 Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-header">
+        <h1>Dashboard Tim SIMPUS</h1>
+        <div class="header-info"><span id="currentDateSimpus"></span></div>
+      </div>
+      <div id="simpusContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       DASHBOARD APOTEKER
+       =============================== -->
+  <div id="dashboardApoteker" class="page dashboard">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <h2>🏥 Apoteker Panel</h2>
+        <p id="apotekerName"></p>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="menu-link active" data-page="apoteker-overview">📊 Dashboard</a></li>
+        <li><a href="#" class="menu-link" data-page="apoteker-inventory">💊 Stok Obat</a></li>
+        <li><a href="#" class="menu-link" data-page="apoteker-prescriptions">📝 Resep Masuk</a></li>
+        <li><a href="#" class="menu-link" data-page="apoteker-expired">⚠️ Obat Kadaluarsa</a></li>
+        <li><a href="#" id="logoutApoteker" class="logout-link">🚪 Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-header">
+        <h1>Dashboard Apoteker</h1>
+        <div class="header-info"><span id="currentDateApoteker"></span></div>
+      </div>
+      <div id="apotekerContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       JAVASCRIPT
+       =============================== -->
+  <script src="script.js"></script>
+</body>
+</html>
