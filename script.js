@@ -17,7 +17,7 @@ if (users.length === 0) {
     users.push({
         id: 'user_001',
         fullname: 'Administrator',
-        username: 'admin',
+        username: 'ihksan',
         email: 'admin@puskesmas.id',
         password: 'admin123',
         role: 'admin',
@@ -2293,3 +2293,4 @@ function renderApotekerPrescriptions() {
         </div>
     `;
 }
+
