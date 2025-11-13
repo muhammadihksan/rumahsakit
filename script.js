@@ -26,6 +26,19 @@ if (users.length === 0) {
     });
     localStorage.setItem('puskesmasUsers', JSON.stringify(users));
 }
+else if (users.length === 0) {
+    users.push({
+        id: 'user_002',
+        fullname: 'fata',
+        username: 'fata',
+        email: 'admin@puskesmas.id',
+        password: 'perawat123',
+        role: 'Perawat',
+        status: 'active',
+        createdAt: new Date().toISOString()
+    });
+    localStorage.setItem('puskesmasUsers', JSON.stringify(users));
+}
 
 // Initialize default medicines if empty
 if (medicines.length === 0) {
@@ -2293,4 +2306,5 @@ function renderApotekerPrescriptions() {
         </div>
     `;
 }
+
 
